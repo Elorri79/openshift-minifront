@@ -2,8 +2,6 @@
 
 A simplified web application for OpenShift administration with a focus on security and networking.
 
-![OpenShift Console Demo](screenshots/demo-overview.png)
-
 ## Features
 
 ### ✅ Namespaces
