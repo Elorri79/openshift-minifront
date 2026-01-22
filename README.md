@@ -1,124 +1,131 @@
-# Consola de OpenShift - Simplificada
+# OpenShift Console - Simplified
 
-Una aplicación web simplificada para administración de OpenShift con enfoque en seguridad y red.
+A simplified web application for OpenShift administration with a focus on security and networking.
 
-## Funcionalidades
+![OpenShift Console Demo](screenshots/demo-overview.png)
+
+## Features
 
 ### ✅ Namespaces
 
-- Crear nuevos namespaces
-- Listar y gestionar namespaces existentes
-- Eliminar namespaces
-- Asignar etiquetas y descripciones
+- Create new namespaces
+- List and manage existing namespaces
+- Delete namespaces
+- Assign labels and descriptions
 
-### ✅ Gestión de Usuarios
+### ✅ User Management
 
-- Crear nuevos usuarios
-- Asignar roles a usuarios
-- Gestionar estado de usuarios (Active/Inactive)
-- Eliminar usuarios
+- Create new users
+- Assign roles to users
+- Manage user status (Active/Inactive)
+- Delete users
 
-### ✅ Roles RBAC
+### ✅ RBAC Roles
 
-- Crear roles personalizados
-- Definir recursos y verbos
-- Crear ClusterRoles y Roles
-- Eliminar roles
+- Create custom roles
+- Define resources and verbs
+- Create ClusterRoles and Roles
+- Delete roles
 
 ### ✅ Network Policies
 
-- Crear políticas de red (Allow/Deny)
-- Configurar pod selectors
-- Gestionar ingress/egress
-- Eliminar políticas
+- Create network policies (Allow/Deny)
+- Configure pod selectors
+- Manage ingress/egress
+- Delete policies
 
 ### ✅ Egress IPs
 
-- Asignar IPs de salida
-- Asociar a nodos específicos
-- Gestionar pools de egress
-- Eliminar egress IPs
+- Assign egress IPs
+- Associate with specific nodes
+- Manage egress pools
+- Delete egress IPs
 
-## Tecnologías
+## Screenshots
 
-- **HTML5**: Estructura semántica
-- **CSS3**: Diseño responsive con variables CSS
-- **JavaScript (ES6+)**: Funcionalidad interactiva
-- **Font Awesome**: Iconografía
-- **Google Fonts (Inter)**: Tipografía
+### Main Dashboard
+![Main Dashboard](screenshots/dashboard.png)
 
-## Instalación
+### Namespace Management
+![Namespace Management](screenshots/namespaces.png)
 
-### Opción 1: Abrir directamente
+## Technologies
 
-1. Abre `index.html` en tu navegador
-2. La aplicación funciona offline
+- **HTML5**: Semantic structure
+- **CSS3**: Responsive design with CSS variables
+- **JavaScript (ES6+)**: Interactive functionality
+- **Font Awesome**: Iconography
+- **Google Fonts (Inter)**: Typography
 
-### Opción 2: Servidor local
+## Installation
 
+### Option 1: Open Directly
+1. Open `index.html` in your browser
+2. The application works offline
+
+### Option 2: Local Server
 ```bash
 cd openshift-frontend
 python3 -m http.server 8000
-# Abrir: http://localhost:8000
+# Open: http://localhost:8000
 ```
 
-## Conexión con OpenShift Real
+## Connecting to Real OpenShift
 
-### 1. Configurar URL del Cluster
+### 1. Configure Cluster URL
+Edit `api-integration.js`:
+```javascript
+this.baseURL = 'https://your-openshift-cluster.com:6443';
+```
 
-Edita `api-integration.js`:
+### 2. Authentication
+
+The application supports token authentication:
 
 ```javascript
-this.baseURL = 'https://tu-cluster-openshift.com:6443';
+openshiftAPI.setToken('your-token-here');
 ```
 
-### 2. Autenticación
-
-La aplicación soporta autenticación con token:
-
-```javascript
-openshiftAPI.setToken('tu-token-aqui');
-```
-
-### 3. Obtener Token
+### 3. Get Token
 
 ```bash
-# Desde la consola web de OpenShift
+# From OpenShift web console
 oc whoami -t
 ```
 
-## API Soportada
+## Supported API
 
 ### Endpoints
-
 - **Namespaces**: `/api/v1/namespaces`
 - **Users**: `/apis/user.openshift.io/v1/users`
 - **Roles**: `/apis/rbac.authorization.k8s.io/v1/clusterroles`
 - **Network Policies**: `/apis/networking.k8s.io/v1/networkpolicies`
 - **Egress IPs**: `/apis/network.openshift.io/v1/hostsubnets`
 
-## Estructura
+## Structure
 
 ```bash
 openshift-frontend/
-├── index.html          # Interfaz principal
-├── styles.css          # Estilos
-├── app.js              # Lógica JavaScript
-├── api-integration.js  # Integración API
-└── README.md           # Documentación
+├── index.html          # Main interface
+├── styles.css          # Styles
+├── app.js              # JavaScript logic
+├── api-integration.js  # API integration
+├── README.md           # Documentation
+└── screenshots/        # Screenshots
 ```
 
-## Modo Demo
+## Demo Mode
 
-La aplicación incluye datos simulados para pruebas. Para conectar con un cluster real, configura la autenticación en `api-integration.js`.
+The application includes simulated data for testing. To connect to a real cluster, configure authentication in `api-integration.js`.
 
-## Seguridad
+## Security
 
-1. **HTTPS obligatorio** para conexiones a OpenShift
-2. **Tokens seguros**: Usa tokens de Service Account
-3. **RBAC**: Configura permisos mínimos necesarios
-4. **CORS**: Configura apropiadamente para desarrollo local
+1. **HTTPS required** for OpenShift connections
+2. **Secure tokens**: Use Service Account tokens
+3. **RBAC**: Configure minimum required permissions
+4. **CORS**: Configure appropriately for local development
 
-## Licencia
+## License
 
 MIT
+
